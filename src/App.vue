@@ -1,10 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <div id="app">
-    <loading :active.sync="isLoading"></loading>
-    <router-view />
-  </div>
-=======
   <v-app id="app">
     <!-- 需要父層樣式 -->
     <div class="needHome" v-if="!$route.meta.NoNeedHome">
@@ -23,7 +17,6 @@
       </div>
     </div>
   </v-app>
->>>>>>> dependabot/npm_and_yarn/elliptic-6.5.3
 </template>
 
 <script>
@@ -31,27 +24,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 export default {
   name: "App",
-<<<<<<< HEAD
-  data() {
-    return {};
-  },
-  computed: {
-    isLoading() {
-      return this.$store.state.isLoading;
-    },
-  },
-  components: {
-    Loading,
-  },
-  methods: {},
-=======
 
   components: { Header, Footer },
 
   data: () => ({
     //
   }),
->>>>>>> dependabot/npm_and_yarn/elliptic-6.5.3
 };
 </script>
 <style lang="scss" scoped>
