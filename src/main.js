@@ -11,11 +11,14 @@ Vue.use(VueAxios, axios);
 // all(建議放套件Css下層)
 import "../src/assets/all.scss";
 
+import vuetify from './plugins/vuetify';
+
 Vue.config.productionTip = false;
 Vue.prototype.$api = api;
 
 new Vue({
   router,
   store,
-  render: (h) => h(App),
+  vuetify,
+  render: (h) => h(App)
 }).$mount("#app");

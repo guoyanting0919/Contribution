@@ -33,9 +33,9 @@ const errorHandle = (status, msg) => {
 };
 
 // 設定 baseURL
-let url = process.env.VUE_APP_BASE_URL;
+
 let instance = axios.create({
-  baseURL: url,
+  baseURL: process.env.VUE_APP_BASE_API,
 });
 
 // request 攔截
