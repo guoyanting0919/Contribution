@@ -4,3 +4,15 @@ $sm: 575.98px;
 $md: 767.98px;
 $lg: 991.98px;
 $xl: 1200px;
+
+/* layout */
+$headerHeight: 124px;
+$footerHeight: 100px;
+
+/* color */
+$colorMain: #00afc3;
+$colorSecond: #00e1d6;
+$colorThird: #0f7574;
+$colorForth: #00a6c3;
+$colorGray: #ececec;
+$colorLinear: linear-gradient(90deg, $colorMain, $colorSecond);
