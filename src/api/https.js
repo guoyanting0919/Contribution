@@ -41,8 +41,8 @@ let instance = axios.create({
 // request 攔截
 instance.interceptors.request.use(
   (config) => {
-    const token = store.state.token;
-    token && (config.headers.Authorization = `Bearer ${token}`);
+    const token = "d2ed506e";
+    token && (config.headers["X-Token"] = token);
     return config;
   },
   (error) => {

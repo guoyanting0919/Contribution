@@ -1,8 +1,9 @@
 <template>
   <button
-    :class="{ greenBtn: isGreen }"
+    :class="{ greenBtn: isGreen, isdisabled: disabled }"
     @click.prevent="handleSubmit"
     class="submitBtn"
+    :disabled="disabled"
   >
     <img
       v-if="icon"
@@ -24,6 +25,11 @@ export default {
       require: false,
     },
     icon: {
+      type: Boolean,
+      default: false,
+      require: false,
+    },
+    disabled: {
       type: Boolean,
       default: false,
       require: false,
@@ -61,6 +67,20 @@ export default {
   &.greenBtn {
     background: #139683;
     border: 1px solid #1bcfa8;
+  }
+
+  &.isdisabled {
+    background: #dddddd;
+    border: none;
+    color: black;
+    cursor: no-drop;
+    transform: none;
+    box-shadow: initial;
+
+    &:hover {
+      transform: translate(0px, 0px);
+      box-shadow: none;
+    }
   }
 
   &:hover {

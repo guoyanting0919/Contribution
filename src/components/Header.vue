@@ -12,7 +12,9 @@
       </div>
       <div class="slogan">工業污染防治刊物及綠色技術與工程研討會</div>
       <div class="linkBox">
-        <span class="headerLink">網站地圖</span>
+        <span class="headerLink" @click="$router.push('/WebMap')"
+          >網站地圖</span
+        >
         <span class="headerLink" @click="$router.push('/')">回首頁</span>
       </div>
     </div>

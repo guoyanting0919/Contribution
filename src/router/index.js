@@ -22,6 +22,18 @@ const routes = [
     },
   },
 
+  /* 網站地圖 */
+  {
+    path: "/WebMap",
+    name: "WebMap",
+    component: () => import("../views/WebMap.vue"),
+    meta: {
+      title: "網站地圖",
+      requireAuth: false,
+      NoNeedHome: false,
+    },
+  },
+
   /* 工業污染防治刊物投稿 */
   {
     path: "/Industry",

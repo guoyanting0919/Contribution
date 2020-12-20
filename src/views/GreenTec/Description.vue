@@ -1,6 +1,6 @@
 <template>
-  <div class="industryDescription">
-    <h1>html</h1>
+  <div class="greenTecDescription">
+    <vue-editor disabled id="editor" v-model="temp.contents"></vue-editor>
     <div class="exampleContainer">
       <img
         src="../../assets/img/內頁ICON_稿件範例.png"
@@ -8,8 +8,13 @@
         srcset=""
       />
       <div class="examplePdfBox">
-        <a href="#">範例稿件.pdf</a>
-        <a href="#">範例範例稿件範例稿件範例稿件範例稿件範例稿件.pdf</a>
+        <a
+          v-for="item in filesList"
+          :key="item.id"
+          target="_blank"
+          :href="`${baseUrl}${item.filePath}`"
+          >{{ item.fileName }}</a
+        >
       </div>
     </div>
     <SubmitBtn
@@ -22,14 +27,47 @@
 </template>
 
 <script>
+import { VueEditor } from "vue2-editor";
 import SubmitBtn from "@/components/SubmitBtn";
 export default {
-  name: "industryDescription",
-  components: { SubmitBtn },
+  name: "greenTecDescription",
+  components: { SubmitBtn, VueEditor },
+  data() {
+    return {
+      /* base url */
+      baseUrl: process.env.VUE_APP_BASE_IMG_URL,
+      /* 檔案列表 */
+      filesList: [],
+
+      /* 模板 */
+      temp: {
+        contents: "",
+      },
+    };
+  },
   methods: {
     handleSubmit() {
       console.log("handleSubmit");
     },
+    getList() {
+      const vm = this;
+      vm.$api.GetCraftById({ id: "MANUCATEGORY_TECHNOLOGY" }).then((res) => {
+        vm.temp = Object.assign({}, res.data.result);
+        let filesArr = vm.temp.files.split(",");
+        filesArr.forEach((id) => {
+          vm.getFilesDetail(id);
+        });
+      });
+    },
+    getFilesDetail(fileIds) {
+      const vm = this;
+      vm.$api.GetFileDetail({ fileIds }).then((res) => {
+        vm.filesList.push(res.data.result[0]);
+      });
+    },
+  },
+  mounted() {
+    this.getList();
   },
 };
 </script>
@@ -53,5 +91,13 @@ export default {
   a {
     color: #444;
   }
+}
+::v-deep .quillWrapper .ql-snow.ql-toolbar {
+  display: none;
+}
+
+::v-deep .quillWrapper {
+  border-top: 1px solid #c3c2c2;
+  margin-bottom: 2rem;
 }
 </style>

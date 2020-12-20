@@ -1,42 +1,45 @@
 <template>
-  <div class="industryForm">
+  <div class="greenTecForm">
+    <!-- <h1 class="formTodo">
+      工業污染防治刊物線上投稿,請填寫以下欄位,以下欄位均為必填
+    </h1> -->
     <template>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
-          v-model="name"
+          v-model="temp.title"
           autocomplete="off"
-          :rules="nameRules"
+          :rules="requirdRules"
           label="投稿題目"
           required
         ></v-text-field>
 
         <v-text-field
-          v-model="name"
+          v-model="temp.authors"
           autocomplete="off"
-          :rules="nameRules"
+          :rules="requirdRules"
           label="作者群"
           required
         ></v-text-field>
 
         <v-text-field
-          v-model="name"
+          v-model="temp.mainContact"
           autocomplete="off"
-          :rules="nameRules"
+          :rules="requirdRules"
           label="主要聯絡人"
           required
         ></v-text-field>
 
         <v-text-field
-          v-model="name"
+          v-model="temp.contactInfo"
           autocomplete="off"
           :counter="10"
-          :rules="nameRules"
+          :rules="requirdRules"
           label="聯絡資訊"
           required
         ></v-text-field>
 
         <v-text-field
-          v-model="email"
+          v-model="temp.email"
           autocomplete="off"
           :rules="emailRules"
           label="E-mail"
@@ -48,7 +51,7 @@
           outlined
           name="input-7-4"
           label="摘要"
-          v-model="email"
+          v-model="temp.summary"
         ></v-textarea>
 
         <v-file-input
@@ -56,7 +59,7 @@
           show-size
           loading
           v-model="files"
-          accept=".pdf"
+          accept=".pdf,.jpeg"
           :rules="uploadRules"
           label="點擊上傳"
         ></v-file-input>
@@ -78,23 +81,12 @@
           </template>
         </v-checkbox>
         <div class="formButtom" style="margin-top: 1rem">
-          <SubmitBtn text="我要投稿" @handleSubmit="submitFiles" />
+          <SubmitBtn
+            :disabled="btnDisabled"
+            text="我要投稿"
+            @handleSubmit="handleValidate"
+          />
         </div>
-
-        <!-- <v-btn
-          :disabled="!valid"
-          color="success"
-          class="mr-4"
-          @click="validate"
-        >
-          Validate
-        </v-btn> -->
-
-        <!-- <v-btn color="error" class="mr-4" @click="reset"> Reset Form </v-btn>
-
-        <v-btn color="warning" @click="resetValidation">
-          Reset Validation
-        </v-btn> -->
       </v-form>
     </template>
   </div>
@@ -104,74 +96,104 @@
 <script>
 import SubmitBtn from "@/components/SubmitBtn";
 export default {
-  name: "industryForm",
+  name: "greenTecForm",
   data() {
     return {
-      temp: {},
-      name: "",
-      email: "",
+      /* base url */
+      baseUrl: process.env.VUE_APP_BASE_API,
+
+      /* 表單模板 */
+      temp: {
+        id: "",
+        title: "",
+        authors: "",
+        mainContact: "",
+        contactInfo: "",
+        email: "",
+        files: "",
+        summary: "",
+      },
+
+      /* pdf黨 */
       files: null,
+
       /* 驗證規則 */
       valid: true,
-      nameRules: [(v) => !!v || "請確實填寫作者群欄位"],
+      requirdRules: [(v) => !!v || "必填欄位"],
       emailRules: [
         (v) => !!v || "E-mail為必填欄位",
         (v) => /.+@.+\..+/.test(v) || "請填寫正確的E-mail格式",
       ],
       uploadRules: [(v) => !!v || "請確實上傳pdf檔"],
 
-      select: null,
-      items: ["Item 1", "Item 2", "Item 3", "Item 4"],
+      /* 是否同意條款 */
       checkbox: false,
+
+      /* 按鈕防呆 */
+      btnDisabled: false,
     };
   },
   components: {
     SubmitBtn,
   },
   methods: {
-    validate() {
-      this.$refs.form.validate();
+    /* 驗證表單 */
+    handleValidate() {
+      const vm = this;
+      if (this.$refs.form.validate()) {
+        vm.submitFiles();
+      } else {
+        vm.btnDisabled = false;
+      }
     },
-    reset() {
-      this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
-    },
-    handleSubmit() {
-      this.validate();
-    },
+
+    /* 檔案上傳 */
     submitFiles() {
       const vm = this;
-      console.log(this.files);
+      vm.btnDisabled = true;
       if (this.files) {
         let formData = new FormData();
-
         // files
         // for (let file of this.files) {
         //   formData.append("files", file, file.name);
         //   console.log(file);
         // }
-
         // additional data
-        formData.append("files", this.files, this.files.name);
-
-        // vm.$api.UploadFiles(formData).then((res) => {
-        //   console.log(res);
-        // });
+        formData.append("filesreq", this.files, this.files.name);
 
         vm.$http
-          .post("http://simpleweb.unitgo.tw/api/Files/Upload", formData)
+          .post(`${vm.baseUrl}Files/UploadWithStr?startstr=S`, formData)
           .then((response) => {
-            console.log("Success!");
-            console.log({ response });
+            vm.$alertT.fire({
+              icon: "success",
+              title: `檔案上傳中...請稍候`,
+            });
+            console.log(response.data.result[0].id);
+            vm.temp.files = response.data.result[0].id;
+            vm.handleSubmit();
           })
           .catch((error) => {
-            console.log({ error });
+            vm.$alertM.fire({
+              icon: "error",
+              title: `檔案上傳失敗`,
+            });
+            vm.btnDisabled = false;
           });
       } else {
         console.log("there are no files.");
       }
+    },
+
+    /* 送出表單 */
+    handleSubmit() {
+      const vm = this;
+      vm.$api.GreenTecDraft(vm.temp).then(() => {
+        vm.$alertT.fire({
+          icon: "success",
+          title: `投稿成功`,
+        });
+        vm.$router.push("/greenTec");
+      });
     },
   },
 };
