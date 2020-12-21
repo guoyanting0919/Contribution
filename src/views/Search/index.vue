@@ -88,7 +88,12 @@
 
             <!-- 預計上刊期別 -->
             <template v-slot:[`item.period`]="{ item }">
-              {{ item.period || "-" }}
+              <span v-if="item.period">
+                {{ item.period }}期
+                <a target="blank" :href="item.periodUrl">(刊物頁面連結)</a>
+              </span>
+
+              <span v-else> - </span>
             </template>
 
             <!-- 摘要狀況 -->

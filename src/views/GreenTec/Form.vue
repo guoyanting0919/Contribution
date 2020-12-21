@@ -34,7 +34,7 @@
           autocomplete="off"
           :counter="10"
           :rules="requirdRules"
-          label="聯絡資訊"
+          label="聯絡資訊(聯絡人手機)"
           required
         ></v-text-field>
 
@@ -59,9 +59,9 @@
           show-size
           loading
           v-model="files"
-          accept=".pdf,.jpeg"
+          accept=".pdf"
           :rules="uploadRules"
-          label="點擊上傳"
+          label="點擊上傳 (限定pdf檔)"
         ></v-file-input>
 
         <v-checkbox
@@ -164,8 +164,8 @@ export default {
         vm.$http
           .post(`${vm.baseUrl}Files/UploadWithStr?startstr=S`, formData)
           .then((response) => {
-            vm.$alertT.fire({
-              icon: "success",
+            vm.$alertM.fire({
+              icon: "info",
               title: `檔案上傳中...請稍候`,
             });
             console.log(response.data.result[0].id);
@@ -188,7 +188,7 @@ export default {
     handleSubmit() {
       const vm = this;
       vm.$api.GreenTecDraft(vm.temp).then(() => {
-        vm.$alertT.fire({
+        vm.$alertM.fire({
           icon: "success",
           title: `投稿成功`,
         });

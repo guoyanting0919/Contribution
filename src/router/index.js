@@ -148,4 +148,12 @@ const router = new VueRouter({
   },
 });
 
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    //如果設定標題，攔截後設置標題
+    document.title = `投稿系統 - ${to.meta.title}`;
+  }
+  next();
+});
+
 export default router;

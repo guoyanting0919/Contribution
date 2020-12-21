@@ -99,19 +99,25 @@ export default {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0 5%;
 }
 
 .homeLogo {
-  width: 300px;
+  width: 400px;
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  // display: flex;
+  top: 0;
+  left: 0.5rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-  width: 100%;
+  width: 75%;
+  background: #ddd;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .mainPicContainer {
