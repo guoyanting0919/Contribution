@@ -77,7 +77,7 @@ export default {
 
 .customHeader {
   background-image: $colorLinear;
-  height: 58%;
+  height: 50%;
   width: 100%;
   display: flex;
   padding: 0 5%;
@@ -114,7 +114,7 @@ export default {
 
 .headerLink {
   display: inline-block;
-  font-size: 0.725rem;
+  font-size: 1rem;
   margin-left: 0.5rem;
   color: #fff;
   font-weight: 700;
@@ -122,7 +122,7 @@ export default {
 }
 
 .navBar {
-  height: 27%;
+  height: 30%;
   width: 100%;
   background: $colorThird;
 }
@@ -139,7 +139,7 @@ export default {
 .navBarLink {
   color: #fff;
   margin-left: 1.5rem;
-  font-size: 0.825rem;
+  font-size: 1rem;
   transition: 0.5s;
 
   &:hover {
@@ -148,7 +148,7 @@ export default {
 }
 
 .breads {
-  height: 15%;
+  height: 20%;
   width: 90%;
   display: flex;
   justify-content: flex-end;
@@ -157,7 +157,7 @@ export default {
 }
 
 .breadSpan {
-  font-size: 0.725rem;
+  font-size: 0.825rem;
 }
 
 .router-link-active {

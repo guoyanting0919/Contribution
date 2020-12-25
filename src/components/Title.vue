@@ -34,7 +34,7 @@ export default {
   padding: 0.25rem 1.5rem;
   padding-left: 6rem;
   background-image: $colorLinear;
-  font-size: 1.15rem;
+  font-size: 1.5rem;
   border: 2px solid #ffffff;
   color: #fff;
   font-weight: normal;

@@ -36,7 +36,7 @@ export default {
 @import "@/assets/css/basic/_variable.scss";
 .appMainContainer {
   margin-top: $headerHeight;
-  min-height: calc(100vh - 224px);
+  min-height: calc(100vh - 250px);
   background: $colorGray;
   padding: 0.5rem 10%;
   padding-bottom: 1.5rem;

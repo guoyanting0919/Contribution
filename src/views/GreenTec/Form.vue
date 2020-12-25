@@ -1,8 +1,7 @@
 <template>
   <div class="greenTecForm">
-    <!-- <h1 class="formTodo">
-      工業污染防治刊物線上投稿,請填寫以下欄位,以下欄位均為必填
-    </h1> -->
+    <loading :active.sync="isLoading"></loading>
+    <h1 class="formTodo">線上投稿請填寫以下欄位,以下欄位均為必填</h1>
     <template>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
@@ -34,9 +33,17 @@
           autocomplete="off"
           :counter="10"
           :rules="requirdRules"
-          label="聯絡資訊(聯絡人手機)"
+          label=""
           required
-        ></v-text-field>
+        >
+          <template v-slot:label>
+            <div>
+              聯絡資訊<span class="labelTodo"
+                >請填寫聯絡電話(市話或行動電話)</span
+              >
+            </div>
+          </template>
+        </v-text-field>
 
         <v-text-field
           v-model="temp.email"
@@ -61,8 +68,15 @@
           v-model="files"
           accept=".pdf"
           :rules="uploadRules"
-          label="點擊上傳 (限定pdf檔)"
-        ></v-file-input>
+        >
+          <template v-slot:label>
+            <div>
+              點擊上傳<span class="labelTodo"
+                >上傳稿件限定pdf檔案 30MB以內</span
+              >
+            </div>
+          </template>
+        </v-file-input>
 
         <v-checkbox
           v-model="checkbox"
@@ -95,12 +109,20 @@
 
 <script>
 import SubmitBtn from "@/components/SubmitBtn";
+// Import component
+import Loading from "vue-loading-overlay";
+// Import stylesheet
+import "vue-loading-overlay/dist/vue-loading.css";
+
 export default {
   name: "greenTecForm",
   data() {
     return {
       /* base url */
       baseUrl: process.env.VUE_APP_BASE_API,
+
+      /* isLoading */
+      isLoading: false,
 
       /* 表單模板 */
       temp: {
@@ -135,6 +157,7 @@ export default {
   },
   components: {
     SubmitBtn,
+    Loading,
   },
   methods: {
     /* 驗證表單 */
@@ -160,14 +183,15 @@ export default {
         // }
         // additional data
         formData.append("filesreq", this.files, this.files.name);
+        vm.isLoading = true;
+        vm.$alertT.fire({
+          icon: "info",
+          title: `檔案上傳中...請耐心等候`,
+        });
 
         vm.$http
           .post(`${vm.baseUrl}Files/UploadWithStr?startstr=S`, formData)
           .then((response) => {
-            vm.$alertM.fire({
-              icon: "info",
-              title: `檔案上傳中...請稍候`,
-            });
             console.log(response.data.result[0].id);
             vm.temp.files = response.data.result[0].id;
             vm.handleSubmit();
@@ -177,6 +201,7 @@ export default {
               icon: "error",
               title: `檔案上傳失敗`,
             });
+            vm.isLoading = false;
             vm.btnDisabled = false;
           });
       } else {
@@ -192,6 +217,8 @@ export default {
           icon: "success",
           title: `投稿成功`,
         });
+
+        vm.isLoading = false;
         vm.$router.push("/greenTec");
       });
     },
@@ -212,5 +239,13 @@ export default {
   align-items: center;
   justify-content: center;
   margin-top: 1rem;
+}
+
+.labelTodo {
+  font-size: 0.85rem;
+  color: red;
+  font-weight: 500;
+  display: inline-block;
+  margin-left: 0.5rem;
 }
 </style>
