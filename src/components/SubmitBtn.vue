@@ -87,6 +87,11 @@ export default {
     transform: translate(-2px, -2px);
     box-shadow: 2px 2px 7px #003869;
   }
+
+  &:focus {
+    transform: translate(-2px, -2px);
+    box-shadow: 2px 2px 7px #003869;
+  }
 }
 .submitBtnIcon {
   margin-right: 0.5rem;

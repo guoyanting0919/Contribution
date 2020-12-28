@@ -1,46 +1,5 @@
 <template>
-  <div id="err404">
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-    <h1>err404</h1>
-  </div>
+  <div id="err404">404</div>
 </template>
 
 <script>

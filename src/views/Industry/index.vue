@@ -2,6 +2,15 @@
   <div class="industry">
     <Title title="工業污染防治刊物投稿" />
     <div class="subContainer">
+      <a
+        id="maincenter"
+        href="#maincenter"
+        accesskey="C"
+        style="float: left; position: absolute; z-index: 99999"
+        class="sr-only sr-only-focusable"
+        title="中央內容區塊"
+        >:::</a
+      >
       <router-view></router-view>
     </div>
   </div>

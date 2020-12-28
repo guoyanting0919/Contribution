@@ -3,7 +3,9 @@
     <!-- 左上角logo -->
     <div class="homeLogo">
       <img class="logo" src="../assets/img/LOGO.png" alt="網站logo" srcset="" />
-      <span style="color: #fff">網站地圖</span>
+      <router-link to="/webMap" tabindex="0" style="color: #fff"
+        >網站地圖</router-link
+      >
     </div>
 
     <!-- 左方大圖 -->
@@ -56,7 +58,12 @@
     </div>
 
     <!-- 投稿進度查詢 -->
-    <div class="searchBox" @click="$router.push('/Search')">
+    <div
+      class="searchBox"
+      @click="$router.push('/Search')"
+      @keydown.enter="$router.push('/Search')"
+      tabindex="0"
+    >
       <img
         style="margin-right: 0.5rem"
         src="../assets/img/首頁ICON_進度查詢.png"

@@ -1,5 +1,8 @@
 <template>
   <div class="headerContainer">
+    <a class="sitemapblock" accesskey="U" title="最上方選單" tabindex="1">
+      :::
+    </a>
     <!-- header -->
     <div class="customHeader">
       <div class="headerLogo">

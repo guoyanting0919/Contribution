@@ -2,6 +2,15 @@
   <div class="search">
     <Title title="投稿進度查詢" />
     <div class="subContainer">
+      <a
+        id="maincenter"
+        href="#maincenter"
+        accesskey="C"
+        style="float: left; position: absolute; z-index: 99999"
+        class="sr-only sr-only-focusable"
+        title="中央內容區塊"
+        >:::</a
+      >
       <h1 class="searchTodo">查詢投稿進度,請輸入投稿題目</h1>
       <!-- query box -->
       <template>
@@ -39,12 +48,20 @@
               </v-col>
 
               <v-col cols="12" md="2">
-                <SubmitBtn
-                  style="width: 100%; text-align: center"
-                  text="查詢"
-                  :disabled="btnDisabled"
-                  @handleSubmit="handleSubmit"
-                />
+                <VueRecaptcha
+                  :sitekey="siteKey"
+                  ref="recaptcha"
+                  @verify="handleSubmit"
+                  @expired="onCaptchaExpired"
+                  size="invisible"
+                  :loadRecaptchaScript="false"
+                >
+                  <SubmitBtn
+                    style="width: 100%; text-align: center"
+                    text="查詢"
+                    :disabled="btnDisabled"
+                  />
+                </VueRecaptcha>
               </v-col>
             </v-row>
           </v-container>
@@ -122,16 +139,20 @@
    
 
 <script>
+import VueRecaptcha from "vue-recaptcha";
 import moment from "moment";
 import Title from "@/components/Title";
 import SubmitBtn from "@/components/SubmitBtn";
 export default {
   name: "search",
-  components: { Title, SubmitBtn },
+  components: { Title, SubmitBtn, VueRecaptcha },
   data() {
     return {
       valid: false,
       btnDisabled: false,
+
+      /* site key */
+      siteKey: process.env.VUE_APP_SITE_KEY,
 
       /* 工業污染 */
       industryList: [],
@@ -210,12 +231,22 @@ export default {
     },
   },
   methods: {
-    handleSubmit() {
-      this.getList();
+    /* google機器人 */
+    onCaptchaExpired() {
+      this.$refs.recaptcha.reset();
     },
-    getList() {
+
+    /* search */
+    handleSubmit(token) {
+      this.getList(token);
+    },
+
+    /* 獲取資料 */
+    getList(token) {
       const vm = this;
       vm.btnDisabled = true;
+      vm.listQuery.token = token;
+      console.log(vm.listQuery);
       if (vm.typeRadio === "Industrty") {
         vm.$api.GetIndustryCraftList(vm.listQuery).then((res) => {
           console.log(res);
@@ -229,9 +260,6 @@ export default {
           vm.btnDisabled = false;
         });
       }
-    },
-    isEnabled(i) {
-      console.log(i);
     },
   },
   mounted() {

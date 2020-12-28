@@ -95,11 +95,16 @@
           </template>
         </v-checkbox>
         <div class="formButtom" style="margin-top: 1rem">
-          <SubmitBtn
-            :disabled="btnDisabled"
-            text="我要投稿"
-            @handleSubmit="handleValidate"
-          />
+          <VueRecaptcha
+            :sitekey="siteKey"
+            ref="recaptcha"
+            @verify="handleValidate"
+            @expired="onCaptchaExpired"
+            size="invisible"
+            :loadRecaptchaScript="false"
+          >
+            <SubmitBtn :disabled="btnDisabled" text="我要投稿" />
+          </VueRecaptcha>
         </div>
       </v-form>
     </template>
@@ -108,18 +113,25 @@
  
 
 <script>
+import VueRecaptcha from "vue-recaptcha";
 import SubmitBtn from "@/components/SubmitBtn";
-// Import component
 import Loading from "vue-loading-overlay";
-// Import stylesheet
 import "vue-loading-overlay/dist/vue-loading.css";
 
 export default {
   name: "greenTecForm",
+  components: {
+    SubmitBtn,
+    Loading,
+    VueRecaptcha,
+  },
   data() {
     return {
       /* base url */
       baseUrl: process.env.VUE_APP_BASE_API,
+
+      /* site key */
+      siteKey: process.env.VUE_APP_SITE_KEY,
 
       /* isLoading */
       isLoading: false,
@@ -155,23 +167,24 @@ export default {
       btnDisabled: false,
     };
   },
-  components: {
-    SubmitBtn,
-    Loading,
-  },
   methods: {
+    /* google機器人 */
+    onCaptchaExpired() {
+      this.$refs.recaptcha.reset();
+    },
+
     /* 驗證表單 */
-    handleValidate() {
+    handleValidate(token) {
       const vm = this;
       if (this.$refs.form.validate()) {
-        vm.submitFiles();
+        vm.submitFiles(token);
       } else {
         vm.btnDisabled = false;
       }
     },
 
     /* 檔案上傳 */
-    submitFiles() {
+    submitFiles(token) {
       const vm = this;
       vm.btnDisabled = true;
       if (this.files) {
@@ -194,7 +207,7 @@ export default {
           .then((response) => {
             console.log(response.data.result[0].id);
             vm.temp.files = response.data.result[0].id;
-            vm.handleSubmit();
+            vm.handleSubmit(token);
           })
           .catch((error) => {
             vm.$alertM.fire({
@@ -210,8 +223,10 @@ export default {
     },
 
     /* 送出表單 */
-    handleSubmit() {
+    handleSubmit(token) {
       const vm = this;
+      vm.temp.token = token;
+      console.log(vm.temp);
       vm.$api.GreenTecDraft(vm.temp).then(() => {
         vm.$alertM.fire({
           icon: "success",
