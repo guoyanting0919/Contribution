@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: "/oss/",
   transpileDependencies: ["vuetify"],
   devServer: {
     port: 1804,
