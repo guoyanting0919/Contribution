@@ -196,7 +196,7 @@ export default {
         // }
         // additional data
         vm.isLoading = true;
-        vm.$alertT.fire({
+        vm.$alertM.fire({
           icon: "info",
           title: `檔案上傳中...請稍候`,
         });

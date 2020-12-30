@@ -107,7 +107,13 @@
             <template v-slot:[`item.period`]="{ item }">
               <span v-if="item.period">
                 {{ item.period }}期
-                <a target="blank" :href="item.periodUrl">(刊物頁面連結)</a>
+                <a
+                  @click="handleConfirm"
+                  title="刊物頁面連結另開視窗"
+                  target="blank"
+                  :href="item.periodUrl"
+                  >(刊物頁面連結)</a
+                >
               </span>
 
               <span v-else> - </span>
@@ -260,6 +266,11 @@ export default {
           vm.btnDisabled = false;
         });
       }
+    },
+
+    /* 外連視窗 */
+    handleConfirm() {
+      confirm("即將前往新頁面，是否另開網頁新視窗");
     },
   },
   mounted() {

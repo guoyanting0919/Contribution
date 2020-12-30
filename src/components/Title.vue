@@ -1,6 +1,6 @@
 <template>
   <div class="customTitle">
-    <h1 class="mainTitle">{{ title }}</h1>
+    <h3 class="mainTitle">{{ title }}</h3>
     <img
       class="titleIcon"
       src="../assets/img/標題icon.png"

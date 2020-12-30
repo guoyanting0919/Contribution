@@ -2,9 +2,27 @@
   <div class="home">
     <!-- 左上角logo -->
     <div class="homeLogo">
-      <img class="logo" src="../assets/img/LOGO.png" alt="網站logo" srcset="" />
+      <h1 style="width: 260px; margin-right: 0.5rem">
+        <img
+          @click="$router.push('/')"
+          class="logo"
+          src="../assets/img/LOGO.png"
+          alt="網站logo"
+          srcset=""
+        />
+      </h1>
       <router-link to="/webMap" tabindex="0" style="color: #fff"
-        >網站地圖</router-link
+        >網站導覽</router-link
+      >
+
+      <a
+        id="maincenter"
+        href="#maincenter"
+        accesskey="C"
+        style="float: left; position: absolute; z-index: 99999; top: 3rems"
+        class="sr-only sr-only-focusable"
+        title="中央內容區塊"
+        >:::</a
       >
     </div>
 
@@ -26,9 +44,9 @@
         srcset=""
       />
       <h2 class="cardTitle">工業污染防治刊物投稿</h2>
-      <h3 class="cardContent">
+      <p class="cardContent">
         工業污染防治投稿工業污染防治工業污染防治投稿工業污染防治工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿
-      </h3>
+      </p>
       <SubmitBtn
         text="我要投稿"
         style="margin-top: 1rem"
@@ -45,9 +63,9 @@
         srcset=""
       />
       <h2 class="cardTitle">綠色技術與工程實務論文投稿</h2>
-      <h3 class="cardContent">
+      <p class="cardContent">
         工業污染防治投稿工業污染防治工業污染防治投稿工業污染防治工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿
-      </h3>
+      </p>
       <SubmitBtn
         text="我要投稿"
         style="margin-top: 1rem"
@@ -121,7 +139,7 @@ export default {
 }
 
 .logo {
-  width: 75%;
+  width: 100%;
   background: #ddd;
   padding: 0.5rem;
   margin-right: 0.5rem;

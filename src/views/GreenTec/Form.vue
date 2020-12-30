@@ -197,7 +197,7 @@ export default {
         // additional data
         formData.append("filesreq", this.files, this.files.name);
         vm.isLoading = true;
-        vm.$alertT.fire({
+        vm.$alertM.fire({
           icon: "info",
           title: `檔案上傳中...請耐心等候`,
         });

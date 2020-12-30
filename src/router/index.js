@@ -28,7 +28,7 @@ const routes = [
     name: "WebMap",
     component: () => import("../views/WebMap.vue"),
     meta: {
-      title: "網站地圖",
+      title: "網站導覽",
       requireAuth: false,
       NoNeedHome: false,
     },

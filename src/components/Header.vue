@@ -1,22 +1,31 @@
 <template>
   <div class="headerContainer">
+    <a
+      href="#maincenter"
+      id="gotocenter"
+      title="跳到主要內容"
+      tabindex="1"
+      class="sr-only sr-only-focusable"
+      >跳到主要內容
+    </a>
     <a class="sitemapblock" accesskey="U" title="最上方選單" tabindex="1">
       :::
     </a>
     <!-- header -->
     <div class="customHeader">
-      <div class="headerLogo">
+      <h1 class="headerLogo">
         <img
+          @click="$router.push('/')"
           class="logo"
           src="../assets/img/LOGO.png"
           alt="網站logo"
           srcset=""
         />
-      </div>
-      <div class="slogan">工業污染防治刊物及綠色技術與工程研討會</div>
+      </h1>
+      <h2 class="slogan">工業污染防治刊物及綠色技術與工程研討會</h2>
       <div class="linkBox">
         <span class="headerLink" @click="$router.push('/WebMap')"
-          >網站地圖</span
+          >網站導覽</span
         >
         <span class="headerLink" @click="$router.push('/')">回首頁</span>
       </div>
@@ -166,5 +175,25 @@ export default {
 .router-link-active {
   color: #bfdfb1;
   border-bottom: 1px solid;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+
+  &:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+  }
 }
 </style>
