@@ -9,7 +9,7 @@
       v-if="icon"
       class="submitBtnIcon"
       src="../assets/img/首頁ICON_我要投稿.png"
-      alt=""
+      alt="首頁ICON_我要投稿"
     />
     {{ text }}
   </button>

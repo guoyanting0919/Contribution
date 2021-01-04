@@ -156,4 +156,8 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
+router.afterEach((to, from) => {
+  document.getElementById("topDiv").focus();
+});
+
 export default router;

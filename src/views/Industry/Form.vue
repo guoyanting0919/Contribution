@@ -114,6 +114,7 @@
  
 
 <script>
+import moment from "moment";
 import VueRecaptcha from "vue-recaptcha";
 import SubmitBtn from "@/components/SubmitBtn";
 import Loading from "vue-loading-overlay";
@@ -168,6 +169,24 @@ export default {
     };
   },
   methods: {
+    /* 獲取時間 */
+    getList() {
+      const vm = this;
+      vm.$api.GetCraftById({ id: "MANUCATEGORY_INDUSTRY" }).then((res) => {
+        let isDate = moment(new Date()).isBetween(
+          res.data.result.startDate,
+          res.data.result.endDate
+        );
+        if (!isDate) {
+          vm.$alertM.fire({
+            icon: "info",
+            title: `非投稿時間`,
+          });
+          this.$router.push("/");
+        }
+      });
+    },
+
     /* google機器人 */
     onCaptchaExpired() {
       this.$refs.recaptcha.reset();
@@ -243,6 +262,9 @@ export default {
         }
       });
     },
+  },
+  mounted() {
+    this.getList();
   },
 };
 </script>

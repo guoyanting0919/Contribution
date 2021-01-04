@@ -1,5 +1,6 @@
 <template>
   <v-app id="app">
+    <div id="topDiv" tabindex="-1"></div>
     <!-- 需要父層樣式 -->
     <div class="needHome" v-if="!$route.meta.NoNeedHome">
       <Header />

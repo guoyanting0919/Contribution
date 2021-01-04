@@ -21,12 +21,14 @@
       text="我要投稿"
       style="margin: auto; margin-top: 1rem"
       :icon="true"
+      :disabled="!isDate"
       @handleSubmit="$router.push('/GreenTec/Form')"
     />
   </div>
 </template>
 
 <script>
+import moment from "moment";
 import { VueEditor } from "vue2-editor";
 import SubmitBtn from "@/components/SubmitBtn";
 export default {
@@ -38,7 +40,8 @@ export default {
       baseUrl: process.env.VUE_APP_BASE_IMG_URL,
       /* 檔案列表 */
       filesList: [],
-
+      /* 活動時間 */
+      isDate: false,
       /* 模板 */
       temp: {
         contents: "",
@@ -53,6 +56,10 @@ export default {
       const vm = this;
       vm.$api.GetCraftById({ id: "MANUCATEGORY_TECHNOLOGY" }).then((res) => {
         vm.temp = Object.assign({}, res.data.result);
+        vm.isDate = moment(new Date()).isBetween(
+          res.data.result.startDate,
+          res.data.result.endDate
+        );
         let filesArr = vm.temp.files.split(",");
         filesArr.forEach((id) => {
           vm.getFilesDetail(id);
