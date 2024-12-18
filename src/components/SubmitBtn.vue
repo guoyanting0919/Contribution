@@ -1,16 +1,6 @@
 <template>
-  <button
-    :class="{ greenBtn: isGreen, isdisabled: disabled }"
-    @click.prevent="handleSubmit"
-    class="submitBtn"
-    :disabled="disabled"
-  >
-    <img
-      v-if="icon"
-      class="submitBtnIcon"
-      src="../assets/img/首頁ICON_我要投稿.png"
-      alt="首頁ICON_我要投稿"
-    />
+  <button :class="{ greenBtn: isGreen, isdisabled: disabled }" @click.prevent="handleSubmit" class="submitBtn" :disabled="disabled">
+    <img v-if="icon" class="submitBtnIcon" src="../assets/img/首頁ICON_我要投稿.png" alt="" />
     {{ text }}
   </button>
 </template>

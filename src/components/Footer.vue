@@ -10,19 +10,11 @@
 
     <!-- logoBox -->
     <div class="logoBox">
-      <img
-        style="margin-right: 1rem"
-        class="footerLogo"
-        src="../assets/img/FOOTER_指導單位.png"
-        alt="指導單位logo"
-        srcset=""
-      />
-      <img
-        class="footerLogo"
-        src="../assets/img/FOOTER_執行單位.png"
-        alt="執行單位logo"
-        srcset=""
-      />
+      <a class="applicationsLogo" href="https://accessibility.ncc.gov.tw/Applications/Detail?category=20210126105034" title="無障礙網站">
+        <img src="../assets/img/無障礙標章.png" border="0" width="88" height="31" alt="通過A檢測等級無障礙網頁檢測" />
+      </a>
+      <img style="margin-right: 1rem;margin-left:1rem" class="footerLogo" src="../assets/img/FOOTER_指導單位.png" alt="產業綠色技術資訊網logo" srcset="" />
+      <img class="footerLogo" src="../assets/img/FOOTER_執行單位.png" alt="台灣產業服務基金會logo" srcset="" />
     </div>
   </div>
 </template>
@@ -56,6 +48,12 @@ export default {
 .copyRightTxt {
   font-size: 0.725rem;
   margin: 0;
+}
+
+.applicationsLogo {
+  height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .logoBox {

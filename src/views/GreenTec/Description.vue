@@ -2,28 +2,12 @@
   <div class="greenTecDescription">
     <vue-editor disabled id="editor" v-model="temp.contents"></vue-editor>
     <div class="exampleContainer">
-      <img
-        src="../../assets/img/內頁ICON_稿件範例.png"
-        alt="內頁ICON_稿件範例"
-        srcset=""
-      />
+      <img src="../../assets/img/內頁ICON_稿件範例.png" alt="" srcset="" />
       <div class="examplePdfBox">
-        <a
-          v-for="item in filesList"
-          :key="item.id"
-          target="_blank"
-          :href="`${baseUrl}${item.filePath}`"
-          >{{ item.fileName }}</a
-        >
+        <a v-for="item in filesList" :key="item.id" target="_blank" :href="`${baseUrl}${item.filePath}`">{{ item.fileName }}</a>
       </div>
     </div>
-    <SubmitBtn
-      text="我要投稿"
-      style="margin: auto; margin-top: 1rem"
-      :icon="true"
-      :disabled="!isDate"
-      @handleSubmit="$router.push('/GreenTec/Form')"
-    />
+    <SubmitBtn text="我要投稿" style="margin: auto; margin-top: 1rem" :icon="true" :disabled="!isDate" @handleSubmit="$router.push('/GreenTec/Form')" />
   </div>
 </template>
 

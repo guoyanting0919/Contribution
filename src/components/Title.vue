@@ -1,12 +1,7 @@
 <template>
   <div class="customTitle">
     <h3 class="mainTitle">{{ title }}</h3>
-    <img
-      class="titleIcon"
-      src="../assets/img/標題icon.png"
-      alt="標題icon"
-      srcset=""
-    />
+    <img class="titleIcon" src="../assets/img/標題icon.png" alt="" srcset="" />
   </div>
 </template>
 

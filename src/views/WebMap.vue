@@ -1,10 +1,8 @@
 <template>
   <div class="webMap">
-    <!-- 工業污染防治刊物投稿
-綠色技術與工程實務論文投稿
-投稿進度查詢 -->
     <Title title="網站導覽" />
     <div class="sitemap">
+      <a id="maincenter" href="#maincenter" accesskey="C" style="" class="" tabindex="1" title="中央內容區塊">:::</a>
       <div class="text">
         本網站依『無障礙網頁開發規範』設計原則而建置，遵循無障礙網站設計之規範提供網頁導盲磚(:::)
         、網站導覽 (Site Navigator)、鍵盤快速鍵 (Access Key) 等設計方式。
@@ -23,38 +21,30 @@
       <div class="sitemaplink">
         <div>
           1.
-          <router-link to="/" target="_blank">首頁</router-link>
+          <a @click="handleConfirm('/')" target="_blank">首頁</a>
         </div>
         <br />
         <div>
           2.
-          <router-link to="/Industry" target="_blank"
-            >工業污染防治刊物投稿</router-link
-          >
+          <a @click="handleConfirm('/Industry')" target="_blank">工業污染防治刊物投稿</a>
         </div>
         <div>
           2-1
-          <router-link to="/Industry/form" target="_blank"
-            >工業污染防治刊物投稿表單</router-link
-          >
+          <a @click="handleConfirm('/Industry/form')" target="_blank">工業污染防治刊物投稿表單</a>
         </div>
         <br />
         <div>
           3.
-          <router-link to="/GreenTec" target="_blank"
-            >綠色技術與工程實務論文投稿</router-link
-          >
+          <a @click="handleConfirm('/GreenTec')" target="_blank">綠色技術與工程實務論文投稿</a>
         </div>
         <div>
           3-1
-          <router-link to="/GreenTec/form" target="_blank"
-            >綠色技術與工程實務論文投稿表單</router-link
-          >
+          <a @click="handleConfirm('/GreenTec/form')" target="_blank">綠色技術與工程實務論文投稿表單</a>
         </div>
         <br />
         <div>
           4.
-          <router-link to="/Search" target="_blank">投稿進度查詢</router-link>
+          <a @click="handleConfirm('/Search')" target="_blank">投稿進度查詢</a>
         </div>
       </div>
     </div>
@@ -66,6 +56,15 @@ import Title from "@/components/Title";
 export default {
   name: "webMap",
   components: { Title },
+  methods: {
+    /* 外連視窗 */
+    handleConfirm(path) {
+      if (confirm("即將前往新頁面，是否另開網頁新視窗")) {
+        // this.$router.push(path);
+        window.open(`https://proj.ftis.org.tw/oss/#${path}`, "_blank");
+      }
+    },
+  },
 };
 </script>
 

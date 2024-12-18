@@ -1,12 +1,6 @@
 <template>
   <div class="home">
-    <a
-      href="#maincenter"
-      id="gotocenter"
-      title="跳到主要內容"
-      tabindex="1"
-      class="sr-only sr-only-focusable"
-      >跳到主要內容
+    <a href="#maincenter" id="gotocenter" title="跳到主要內容" tabindex="1" class="sr-only sr-only-focusable">跳到主要內容
     </a>
     <a class="sitemapblock" accesskey="U" title="最上方選單" tabindex="1">
       :::
@@ -15,92 +9,41 @@
       <!-- 左上角logo -->
       <div class="homeLogo">
         <h1 style="width: 260px; margin-right: 0.5rem">
-          <img
-            @click="$router.push('/')"
-            class="logo"
-            src="../assets/img/LOGO.png"
-            alt="網站logo"
-            srcset=""
-          />
+          <img @click="handleHome" class="logo" src="../assets/img/LOGO.png" alt="產業綠色技術資訊網logo" srcset="" />
         </h1>
 
-        <a
-          id="maincenter"
-          href="#maincenter"
-          accesskey="C"
-          style=""
-          class=""
-          tabindex="1"
-          title="中央內容區塊"
-          >:::</a
-        >
-        <router-link to="/webMap" tabindex="1" style="color: #fff"
-          >網站導覽</router-link
-        >
+        <a id="maincenter" href="#maincenter" accesskey="C" style="" class="" tabindex="1" title="中央內容區塊">:::</a>
+        <router-link to="/webMap" tabindex="1" style="color: #fff">網站導覽</router-link>
       </div>
 
       <!-- 左方大圖 -->
       <div class="mainPicContainer">
-        <img
-          class="mainPic"
-          src="../assets/img/首頁主視覺.png"
-          alt="首頁主視覺"
-          srcset=""
-        />
+        <img class="mainPic" src="../assets/img/首頁主視覺.png" alt="" srcset="" />
       </div>
 
       <!-- 工業污染投稿 -->
       <div class="industryContainer">
-        <img
-          src="../assets/img/首頁ICON_工業污染防治.png"
-          alt="首頁ICON_工業污染防治"
-          srcset=""
-        />
+        <img src="../assets/img/首頁ICON_工業污染防治.png" alt="" srcset="" />
         <h2 class="cardTitle">工業污染防治刊物投稿</h2>
         <p class="cardContent">
           工業污染防治投稿工業污染防治工業污染防治投稿工業污染防治工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿
         </p>
-        <SubmitBtn
-          text="我要投稿"
-          style="margin-top: 1rem"
-          :icon="true"
-          @handleSubmit="handleSubmitIndu"
-        />
+        <SubmitBtn text="我要投稿" style="margin-top: 1rem" :icon="true" @handleSubmit="handleSubmitIndu" />
       </div>
 
       <!-- 綠色技術投稿 -->
       <div class="greenTecContainer">
-        <img
-          src="../assets/img/首頁ICON_綠色技術.png"
-          alt="首頁ICON_綠色技術"
-          srcset=""
-        />
+        <img src="../assets/img/首頁ICON_綠色技術.png" alt="" srcset="" />
         <h2 class="cardTitle">綠色技術與工程實務論文投稿</h2>
         <p class="cardContent">
           工業污染防治投稿工業污染防治工業污染防治投稿工業污染防治工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿工業污染防治投稿
         </p>
-        <SubmitBtn
-          text="我要投稿"
-          style="margin-top: 1rem"
-          :icon="true"
-          :isGreen="true"
-          @handleSubmit="handleSubmitGreen"
-        />
+        <SubmitBtn text="我要投稿" style="margin-top: 1rem" :icon="true" :isGreen="true" @handleSubmit="handleSubmitGreen" />
       </div>
 
       <!-- 投稿進度查詢 -->
-      <div
-        class="searchBox"
-        @click="$router.push('/Search')"
-        @keydown.enter="$router.push('/Search')"
-        tabindex="0"
-      >
-        <img
-          style="margin-right: 0.5rem"
-          src="../assets/img/首頁ICON_進度查詢.png"
-          alt="首頁ICON_進度查詢"
-          srcset=""
-        />
+      <div class="searchBox" @click="$router.push('/Search')" @keydown.enter="$router.push('/Search')" tabindex="0">
+        <img style="margin-right: 0.5rem" src="../assets/img/首頁ICON_進度查詢.png" alt="" srcset="" />
         投稿進度查詢
       </div>
     </div>
@@ -122,6 +65,9 @@ export default {
     },
     handleSubmitGreen() {
       this.$router.push("/GreenTec");
+    },
+    handleHome() {
+      this.$router.push("/");
     },
   },
   created() {},
@@ -163,6 +109,7 @@ export default {
   background: #ddd;
   padding: 0.5rem;
   margin-right: 0.5rem;
+  cursor: pointer;
 }
 
 .mainPicContainer {

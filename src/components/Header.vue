@@ -1,12 +1,6 @@
 <template>
   <div class="headerContainer">
-    <a
-      href="#maincenter"
-      id="gotocenter"
-      title="跳到主要內容"
-      tabindex="1"
-      class="sr-only sr-only-focusable"
-      >跳到主要內容
+    <a href="#maincenter" id="gotocenter" title="跳到主要內容" tabindex="1" class="sr-only sr-only-focusable">跳到主要內容
     </a>
     <a class="sitemapblock" accesskey="U" title="最上方選單" tabindex="1">
       :::
@@ -14,19 +8,11 @@
     <!-- header -->
     <div class="customHeader">
       <h1 class="headerLogo">
-        <img
-          @click="$router.push('/')"
-          class="logo"
-          src="../assets/img/LOGO.png"
-          alt="網站logo"
-          srcset=""
-        />
+        <img @click="$router.push('/')" class="logo" src="../assets/img/LOGO.png" alt="產業綠色技術資訊網logo" srcset="" />
       </h1>
       <h2 class="slogan">工業污染防治刊物及綠色技術與工程研討會</h2>
       <div class="linkBox">
-        <a class="headerLink" @click="$router.push('/WebMap')" tabindex="1"
-          >網站導覽</a
-        >
+        <a class="headerLink" @click="$router.push('/WebMap')" tabindex="1">網站導覽</a>
         <a class="headerLink" @click="$router.push('/')" tabindex="1">回首頁</a>
       </div>
     </div>
@@ -34,12 +20,8 @@
     <!-- navBar -->
     <div class="navBar">
       <div class="navBarLinks">
-        <router-link class="navBarLink" to="/Industry"
-          >工業污染防治刊物投稿</router-link
-        >
-        <router-link class="navBarLink" to="/GreenTec"
-          >綠色技術與工程實務論文投稿</router-link
-        >
+        <router-link class="navBarLink" to="/Industry">工業污染防治刊物投稿</router-link>
+        <router-link class="navBarLink" to="/GreenTec">綠色技術與工程實務論文投稿</router-link>
         <router-link class="navBarLink" to="/Search">投稿進度查詢</router-link>
       </div>
     </div>
@@ -48,8 +30,7 @@
     <div class="breads">
       <span class="breadSpan">目前位置：</span>
       <span class="breadSpan">首頁 > </span>
-      <span v-for="(r, idx) in routeMatch" :key="r.path" class="breadSpan"
-        >{{ r.meta.title }}
+      <span v-for="(r, idx) in routeMatch" :key="r.path" class="breadSpan">{{ r.meta.title }}
         <span v-if="idx !== routeMatch.length - 1"> > </span>
       </span>
     </div>
